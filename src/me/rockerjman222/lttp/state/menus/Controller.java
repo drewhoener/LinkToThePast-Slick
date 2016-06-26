@@ -1,6 +1,5 @@
 package me.rockerjman222.lttp.state.menus;
 
-import me.rockerjman222.lttp.Main;
 import me.rockerjman222.lttp.input.ControllerInput;
 import me.rockerjman222.lttp.state.BasicState;
 import me.rockerjman222.lttp.state.EnumStates;
@@ -25,8 +24,8 @@ public class Controller extends BasicState {
 
 	@Override
 	public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
-		this.input = new ControllerInput(gameContainer);
-		this.map = new TiledMap("res/maps/test.tmx");
+		//this.input = new ControllerInput(gameContainer);
+		this.map = new TiledMap("res/maps/backup.tmx");
 
 		this.x = 10;
 		this.y = 1;
@@ -44,7 +43,7 @@ public class Controller extends BasicState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame stateBasedGame, int delta) throws SlickException {
 		super.update(gc, stateBasedGame, delta);
-		this.input.update(delta);
+		//this.input.update(delta);
 
 		int objectLayer = map.getLayerIndex("Tile Layer 1");
 		this.map.getTileId(0, 0, objectLayer);

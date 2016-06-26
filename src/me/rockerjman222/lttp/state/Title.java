@@ -23,7 +23,6 @@ public class Title extends BasicState {
 	public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 		this.triForceSheet = new SpriteSheet("/res/titleScreen/triforceSprites.png", 45, 45);
 		this.triforceSprite = new Animation(this.triForceSheet, 100);
-		System.out.println("THIS IS THE TITLE STATE");
 	}
 
 	@Override
@@ -31,7 +30,6 @@ public class Title extends BasicState {
 		super.render(gameContainer, stateBasedGame, graphics);
 		this.triforceSprite.getCurrentFrame().setFilter(Image.FILTER_NEAREST);
 		this.triforceSprite.draw(100, 100, 45 * Main.scale, 45 * Main.scale);
-		graphics.drawImage(new Image("/res/misc/controller.png"), 10, 10, 0, 0, 994, 453);
 
 	}
 
