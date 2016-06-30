@@ -7,7 +7,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class StateGame extends StateBasedGame{
+public class StateGame extends StateBasedGame {
 
 
 	public StateGame(String name) {
@@ -21,5 +21,7 @@ public class StateGame extends StateBasedGame{
 		this.addState(new Controller());
 		this.enterState(EnumStates.CONTROLLER.getId());
 	}
+
+
 
 }

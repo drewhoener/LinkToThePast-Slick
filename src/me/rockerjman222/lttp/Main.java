@@ -19,6 +19,13 @@ public class Main {
 	private static final int width = 256 * scale;
 
 	public static void main(String[] args) {
+		if(isWindows())
+			System.setProperty("java.library.path", "lib/natives/natives-windows/");
+		else if(isMac())
+			System.setProperty("java.library.path", "lib/natives/natives-mac/");
+		else if(isLinux())
+			System.setProperty("java.library.path", "lib/natives/natives-linux/");
+
 		try {
 			AppGameContainer appgc;
 			appgc = new AppGameContainer(new StateGame("Link To The Past"));
@@ -28,6 +35,18 @@ public class Main {
 		} catch (SlickException e) {
 			Logger.getLogger(StateGame.class.getName()).log(Level.SEVERE, null, e);
 		}
+	}
+
+	public static boolean isWindows() {
+		return System.getProperty("os.name").startsWith("Windows");
+	}
+
+	public static boolean isMac() {
+		return System.getProperty("os.name").startsWith("Mac");
+	}
+
+	public static boolean isLinux() {
+		return System.getProperty("os.name").startsWith("Linux");
 	}
 
 }
