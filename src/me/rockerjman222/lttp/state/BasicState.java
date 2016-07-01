@@ -1,5 +1,6 @@
 package me.rockerjman222.lttp.state;
 
+import me.rockerjman222.lttp.game.StateGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -9,8 +10,18 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class BasicState implements GameState {
 
-	private int deltaThreshold = 50;
+	//before I forget
+	/**
+	 * How much update time should go by before incrementing
+	 * */
+	private int deltaThreshold = 15;
+	/**
+	 * Holder for how many update delta ticks have gone by
+	 * */
 	private int deltaCounter = 0;
+	/**
+	 * The actual counter to be incremented
+	 * */
 	private int resourceTimer = 0;
 
 	@Override
@@ -20,17 +31,31 @@ public class BasicState implements GameState {
 
 	@Override
 	public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
+		if(stateBasedGame instanceof StateGame){
+			StateGame game = ((StateGame) stateBasedGame);
+			game.getResourceScheduler().clearSchedule();
+		}
 
 	}
 
 	@Override
 	public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
-
+		if(stateBasedGame instanceof StateGame){
+			StateGame game = ((StateGame) stateBasedGame);
+			game.getResourceScheduler().drawResources();
+		}
 	}
 
 	@Override
 	public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
-
+		this.deltaCounter += i;
+		if(this.deltaCounter >= this.deltaThreshold){
+			this.deltaCounter = 0;
+			if(stateBasedGame instanceof StateGame){
+				StateGame game = ((StateGame) stateBasedGame);
+				game.getResourceScheduler().updateResources(++this.resourceTimer, i);
+			}
+		}
 	}
 
 	@Override
